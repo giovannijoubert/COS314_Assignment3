@@ -32,11 +32,14 @@ class IrisNN {
 
     myNN.Train(5000, 0.05, 0.01);
 
-  //  System.out.println("Weights: " + Arrays.toString(myNN.GetWeights()));
+    ShowVector(myNN.GetWeights(), 10);
 
-    System.out.println("Hidden Biases: " + Arrays.toString(myNN.GetHiddenBiases()));
-   // System.out.println("Weights: " + Arrays.toString(myNN.GetWeights()));
-    
+    // System.out.println("Weights: " + Arrays.toString(myNN.GetWeights()));
+
+    // System.out.println("Hidden Biases: " +
+    // Arrays.toString(myNN.GetHiddenBiases()));
+    // System.out.println("Weights: " + Arrays.toString(myNN.GetWeights()));
+
     double trainAcc = myNN.Accuracy(Set.TRAINING);
     System.out.println("Training Accuracy: " + trainAcc);
 
@@ -62,6 +65,15 @@ class IrisNN {
     }
     // what remains is testing data
     TestingSet = new ArrayList<double[]>(TempDataSet);
+  }
+
+  static void ShowVector(double[] vector, int valsPerRow) {
+    for (int i = 0; i < vector.length; ++i) {
+      if (i % valsPerRow == 0)
+        System.out.println("");
+      System.out.print(String.format("%.2f", vector[i]));
+    }
+    System.out.println("");
   }
 
   /*
@@ -201,7 +213,7 @@ class IrisNN {
         initialWeights[i] = (upperBound - lowerBound) * random.nextDouble() + lowerBound;
       SetWeights(initialWeights);
     }
-    
+
     public double[] GetHiddenBiases() {
       return HiddenBiases;
     }
